@@ -14,8 +14,8 @@
              id="navAltMarkup">
              <div class="navbar-nav">
                  <a href="kasir.php" class="nav-link">Kasir</a>
-                 <a href="ManageAccounts.php" class="nav-link">Manage Accounts</a>
-                 <a href="#" class="nav-link">Manage Books</a>
+                 <!-- <a href="ManageAccounts.php" class="nav-link">Manage Accounts</a>
+                 <a href="#" class="nav-link">Manage Books</a> -->
              </div>
          </div>
          <h1 class="px-3" style="font-family: 'Righteous'">Welcome, <?php echo $_SESSION['NAMALENGKAPNYA']; ?> </h1>

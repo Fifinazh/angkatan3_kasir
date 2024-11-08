@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 07, 2024 at 09:45 AM
+-- Generation Time: Nov 08, 2024 at 09:13 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -43,8 +43,12 @@ CREATE TABLE `barang` (
 --
 
 INSERT INTO `barang` (`id`, `id_kategori`, `nama_barang`, `satuan`, `qty`, `harga`, `created_at`, `update_at`) VALUES
-(1, 1, 'Wallens Choco Soe', 'Dus', 35, 5000, '2024-11-06 03:52:41', '2024-11-07 07:48:40'),
-(2, 2, 'Granita', 'Dus', 17, 3000, '2024-11-06 03:52:41', '2024-11-07 08:04:04');
+(1, 1, 'Wallens Choco Soe', 'Dus', 28, 5000, '2024-11-06 03:52:41', '2024-11-08 07:51:03'),
+(2, 2, 'Granita', 'Dus', 15, 3000, '2024-11-06 03:52:41', '2024-11-08 07:48:34'),
+(5, 1, 'Chiki Chuba', 'Dus', 34, 2000, '2024-11-08 06:54:54', '2024-11-08 07:48:34'),
+(6, 2, 'Ale-ale', 'Dus', 29, 2000, '2024-11-08 06:54:54', '2024-11-08 07:43:34'),
+(7, 1, 'Basreng', 'Dus', 30, 500, '2024-11-08 06:56:32', '2024-11-08 06:56:32'),
+(8, 2, 'Teh Gelas', 'Dus', 33, 2000, '2024-11-08 06:56:32', '2024-11-08 07:51:03');
 
 -- --------------------------------------------------------
 
@@ -57,9 +61,9 @@ CREATE TABLE `detail_penjualan` (
   `id_penjualan` int(11) DEFAULT NULL,
   `id_barang` int(11) DEFAULT NULL,
   `jumlah` int(11) DEFAULT NULL,
-  `qty` int(11) DEFAULT NULL,
   `harga` double(10,2) DEFAULT NULL,
   `total_harga` double(10,2) DEFAULT NULL,
+  `sub_total` double(10,2) NOT NULL,
   `nominal_bayar` double(10,2) DEFAULT NULL,
   `kembalian` double(10,2) DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
@@ -69,13 +73,20 @@ CREATE TABLE `detail_penjualan` (
 -- Dumping data for table `detail_penjualan`
 --
 
-INSERT INTO `detail_penjualan` (`id`, `id_penjualan`, `id_barang`, `jumlah`, `qty`, `harga`, `total_harga`, `nominal_bayar`, `kembalian`, `created_at`) VALUES
-(1, 1, 1, 3, 40, 5000.00, 30000.00, 70000.00, 40000.00, '2024-11-07 07:48:40'),
-(2, 1, 2, 5, 27, 3000.00, 30000.00, 70000.00, 40000.00, '2024-11-07 07:48:40'),
-(3, 2, 1, 2, 35, 5000.00, 10000.00, 20000.00, 10000.00, '2024-11-07 07:53:59'),
-(4, 3, 2, 5, 25, 3000.00, 15000.00, 20000.00, 5000.00, '2024-11-07 07:55:21'),
-(5, 4, 2, 1, 20, 3000.00, 3000.00, 5000.00, 2000.00, '2024-11-07 07:59:44'),
-(6, 5, 2, 2, 19, 3000.00, 6000.00, 10000.00, 4000.00, '2024-11-07 08:04:04');
+INSERT INTO `detail_penjualan` (`id`, `id_penjualan`, `id_barang`, `jumlah`, `harga`, `total_harga`, `sub_total`, `nominal_bayar`, `kembalian`, `created_at`) VALUES
+(1, 1, 1, 3, 5000.00, 30000.00, 0.00, 70000.00, 40000.00, '2024-11-07 07:48:40'),
+(2, 1, 2, 5, 3000.00, 30000.00, 0.00, 70000.00, 40000.00, '2024-11-07 07:48:40'),
+(3, 2, 1, 2, 5000.00, 10000.00, 0.00, 20000.00, 10000.00, '2024-11-07 07:53:59'),
+(4, 3, 2, 5, 3000.00, 15000.00, 0.00, 20000.00, 5000.00, '2024-11-07 07:55:21'),
+(5, 4, 2, 1, 3000.00, 3000.00, 0.00, 5000.00, 2000.00, '2024-11-07 07:59:44'),
+(6, 5, 2, 2, 3000.00, 6000.00, 0.00, 10000.00, 4000.00, '2024-11-07 08:04:04'),
+(7, 6, 1, 2, 5000.00, 10000.00, 0.00, 20000.00, 10000.00, '2024-11-08 01:48:40'),
+(8, 7, 1, 2, 5000.00, 1.00, 10000.00, 20000.00, 8000.00, '2024-11-08 07:43:34'),
+(9, 7, 6, 1, 2000.00, 2.00, 2000.00, 20000.00, 8000.00, '2024-11-08 07:43:34'),
+(10, 8, 5, 1, 2000.00, 8000.00, 2000.00, 10000.00, 2000.00, '2024-11-08 07:48:34'),
+(11, 8, 2, 2, 3000.00, 8000.00, 6000.00, 10000.00, 2000.00, '2024-11-08 07:48:34'),
+(12, 9, 1, 3, 5000.00, 19000.00, 15000.00, 35000.00, 16000.00, '2024-11-08 07:51:03'),
+(13, 9, 8, 2, 2000.00, 19000.00, 4000.00, 35000.00, 16000.00, '2024-11-08 07:51:03');
 
 -- --------------------------------------------------------
 
@@ -121,7 +132,11 @@ INSERT INTO `penjualan` (`id`, `id_user`, `kode_transaksi`, `tanggal_transaksi`,
 (2, 0, 'TR-241107145342', '2024-11-07', '2024-11-07 07:53:59'),
 (3, 0, 'TR-241107145510', '2024-11-07', '2024-11-07 07:55:21'),
 (4, NULL, 'TR-241107145933', '2024-11-07', '2024-11-07 07:59:44'),
-(5, 1, 'TR-241107150353', '2024-11-07', '2024-11-07 08:04:04');
+(5, 1, 'TR-241107150353', '2024-11-07', '2024-11-07 08:04:04'),
+(6, 1, 'TR-241108084817', '2024-11-08', '2024-11-08 01:48:40'),
+(7, 1, 'TR-241108144303', '2024-11-08', '2024-11-08 07:43:34'),
+(8, 1, 'TR-241108144747', '2024-11-08', '2024-11-08 07:48:34'),
+(9, 1, 'TR-241108145037', '2024-11-08', '2024-11-08 07:51:03');
 
 -- --------------------------------------------------------
 
@@ -192,13 +207,13 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `barang`
 --
 ALTER TABLE `barang`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `detail_penjualan`
 --
 ALTER TABLE `detail_penjualan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `kategori_barang`
@@ -210,7 +225,7 @@ ALTER TABLE `kategori_barang`
 -- AUTO_INCREMENT for table `penjualan`
 --
 ALTER TABLE `penjualan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `user`
